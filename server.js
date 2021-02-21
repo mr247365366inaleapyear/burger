@@ -1,22 +1,22 @@
-var express = require("express");
-var bodyParser = require("body-parser");
+import express, { static } from "express";
+import { urlencoded, json } from "body-parser";
 
 var PORT = process.env.PORT || 8080;
 
 var app = express();
 
-app.use(express.static("public"));
+app.use(static("public"));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(urlencoded({ extended: true }));
 
-app.use(bodyParser.json());
+app.use(json());
 
-var exphbs = require("express-handlebars");
+import exphbs from "express-handlebars";
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/burgersController.js");
+import routes from "./controllers/burgersController.js";
 
 app.use(routes);
 

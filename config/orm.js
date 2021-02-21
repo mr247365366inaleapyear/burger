@@ -1,4 +1,4 @@
-const connection = require("../config/connection.js");
+import { query } from "../config/connection.js";
 
 function printQuestionMarks(num) {
   var arr = [];
@@ -29,7 +29,7 @@ function objToSql(ob) {
 var orm = {
   all: function (tableInput, cb) {
     var queryString = "SELECT * FROM " + tableInput + ";";
-    connection.query(queryString, function (err, result) {
+    query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
@@ -48,7 +48,7 @@ var orm = {
 
     console.log(queryString);
 
-    connection.query(queryString, vals, function (err, result) {
+    query(queryString, vals, function (err, result) {
       if (err) {
         throw err;
       }
@@ -65,7 +65,7 @@ var orm = {
     queryString += condition;
 
     console.log(queryString);
-    connection.query(queryString, function (err, result) {
+    query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
@@ -78,7 +78,7 @@ var orm = {
     queryString += " WHERE ";
     queryString += condition;
 
-    connection.query(queryString, function (err, result) {
+    query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
@@ -88,4 +88,4 @@ var orm = {
   },
 };
 
-module.exports = orm;
+export default orm;

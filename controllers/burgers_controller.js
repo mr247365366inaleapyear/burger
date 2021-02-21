@@ -1,11 +1,11 @@
-const express = require("express");
+import { Router } from "express";
 
-const router = express.Router();
+const router = Router();
 
-const burger = require("../models/burger.js");
+import { all, create, update } from "../models/burger.js";
 
-router.get("/", function(req, res) {
-  burger.all(function(data) {
+router.get("/", function(_req, res) {
+  all(function(data) {
     const hbsObject = {
       burger: data
     };
@@ -15,7 +15,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/burgers", function(req, res) {
-  burger.create([
+  create([
     "name", "hamburger"
   ], [
     req.body.name, req.body.sleepy
@@ -29,7 +29,7 @@ router.put("/api/burgers/:id", function(req, res) {
 
   console.log("condition", condition);
 
-  burger.update({
+  update({
     sleepy: req.body.hamburger
   }, condition, function(result) {
     if (result.changedRows == 0) {
@@ -52,4 +52,4 @@ router.delete("/api/burgers/:id", function(req, res) {
   });
 });
 
-module.exports = router;
+export default router;
