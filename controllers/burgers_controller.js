@@ -4,34 +4,34 @@ const router = express.Router();
 
 const burger = require("../models/burger.js");
 
-router.get("/", (req, res) => {
-  burger.all((data) => {
+router.get("/", function(req, res) {
+  burger.all(function(data) {
     const hbsObject = {
-      cats: data
+      burger: data
     };
     console.log(hbsObject);
     res.render("index", hbsObject);
   });
 });
 
-router.post("/api/burgers", (req, res) => {
+router.post("/api/burgers", function(req, res) {
   burger.create([
     "name", "hamburger"
   ], [
     req.body.name, req.body.sleepy
-  ], (result) => {
+  ], function(result) {
     res.json({ id: result.insertId });
   });
 });
 
-router.put("/api/burgers/:id", (req, res) => {
+router.put("/api/burgers/:id", function(req, res) {
   const condition = "id = " + req.params.id;
 
   console.log("condition", condition);
 
   burger.update({
     sleepy: req.body.hamburger
-  }, condition, (result) => {
+  }, condition, function(result) {
     if (result.changedRows == 0) {
       return res.status(404).end();
     } else {
@@ -40,10 +40,10 @@ router.put("/api/burgers/:id", (req, res) => {
   });
 });
 
-router.delete("/api/burgers/:id", (req, res) => {
+router.delete("/api/burgers/:id", function(req, res) {
   const condition = "id = " + req.params.id;
 
-  cat.delete(condition, (result) => {
+  cat.delete(condition, function(result) {
     if (result.affectedRows == 0) {
       return res.status(404).end();
     } else {
