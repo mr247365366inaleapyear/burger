@@ -1,4 +1,4 @@
-import { all as _all, create as _create, update as _update, delete as _delete } from "../config/orm.js";
+const orm = require("../config/orm.js");
 
 const burger = {
   all: (cb) => {

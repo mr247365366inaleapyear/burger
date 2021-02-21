@@ -1,8 +1,8 @@
 const express = require("express");
 
-const router = Router();
+var router = express.Router();
 
-import { all, create, update } from "../models/burger.js";
+const burger = require("../models/burger.js");
 
 router.get("/", function(_req, res) {
   all(function(data) {
@@ -52,4 +52,4 @@ router.delete("/api/burgers/:id", function(req, res) {
   });
 });
 
-export default router;
+module.exports = Router;
