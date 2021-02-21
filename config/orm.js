@@ -1,4 +1,4 @@
-import { query } from "../config/connection.js";
+const connection = require("../config/connection.js");
 
 function printQuestionMarks(num) {
   var arr = [];
@@ -88,4 +88,4 @@ var orm = {
   },
 };
 
-export default orm;
+module.exports = connection;

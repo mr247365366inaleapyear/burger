@@ -23,4 +23,4 @@ const burger = {
   }
 };
 
-export default burger;
+module.exports = burger;
