@@ -1,4 +1,4 @@
-import { createConnection } from 'mysql';
+const mysql = require('mysql');
 
 if (process.env.JAWSDB_URL) {
     connection = createConnection(process.env.JAWSDB_URL);
@@ -21,4 +21,4 @@ connection.connect(function(err) {
     
 });
 
-export default connection;
+module.exports = mysql;
